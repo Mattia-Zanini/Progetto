@@ -1,5 +1,4 @@
-# Progetto Dati e Algoritmi
-## Skip List Priority Queue Project
+# Skip List Priority Queue Project
 
 ## Descrizione del Progetto
 Questo progetto richiede l'implementazione di una Priority Queue utilizzando una Skip List, una struttura dati probabilistica introdotta nel 1989 da William Pugh. L'obiettivo è ottimizzare le operazioni di ricerca, inserimento e rimozione in un'implementazione efficiente della Map Abstract Data Type (ADT).
