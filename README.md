@@ -25,9 +25,14 @@ Le Skip List consistono in una serie di liste ordinate che sfruttano la randomiz
      - Linea 1: `N` (numero di operazioni) e `α` (probabilità di testa nel lancio di una moneta).
      - Da linea 2: operazioni codificate (`0` per `min`, `1` per `removeMin`, `2` per `insert key string`, `3` per `print`).
    - Esempio di output (file: IO_FILES/input_example_1):
-     ```
-     0.5, 6, 8, 6.25
-     ```
+    ```
+    -1.0 6 8 6.25
+    ```
+    Dove:
+      - `-1.0`: valore di `α`.
+      - `6`: numero di elementi nella skip list.
+      - `8`: numero totale di operazioni `insert` eseguite.
+      - `6.25`: media dei nodi attraversati per ogni inserimento.
 
 ---
 
@@ -78,15 +83,3 @@ Il progetto richiede:
 3. **Conformità alle specifiche**:
    - Il programma deve compilare ed eseguire correttamente usando il comando `javac TestProgram.java`.
    - L’output deve essere formattato esattamente come negli esempi forniti.
-
-#### **Esempio di output finale richiesto**:
-- Input: `13 -1`
-- Output:
-  ```
-  -1.0 6 8 6.25
-  ```
-   Dove:
-   - `-1.0`: valore di `α`.
-   - `6`: numero di elementi nella skip list.
-   - `8`: numero totale di operazioni `insert` eseguite.
-   - `6.25`: media dei nodi attraversati per ogni inserimento.
