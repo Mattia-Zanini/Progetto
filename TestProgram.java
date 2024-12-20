@@ -115,7 +115,8 @@ class SkipListPQ {
     private boolean listUpdated;
     private int listSize;
 
-    private int operationCost;
+    // Tiene traccia ti quanti nodi sono stati visitati per la search
+    private int nodeVisited;
 
     public SkipListPQ(double _alpha) {
         alpha = _alpha;
@@ -154,7 +155,7 @@ class SkipListPQ {
         listUpdated = true;
 
         listSize = 0;
-        operationCost = 0;
+        nodeVisited = 0;
     }
 
     public int size() {
@@ -188,18 +189,23 @@ class SkipListPQ {
         return search(k, 0);
     }
 
+    // Cerco il nodo con la chiave k < rispetto alla chiave della entry da inserire
+    //
+    // Non aggiungo al totale dei nodi visitati, le visite di 'getNodeHeight()'
+    // perchè da consegna devo tener traccia dei nodi visitati, partendo da s (il
+    // nodo head) per inserire la nuova entry in S0
     private Node search(int k, int minHeight) {
         Node p = head;
         int height = getNodeHeight(p);
 
         while (below(p) != null && height > minHeight) {
             p = below(p);
-            operationCost++;
+            nodeVisited++;
             height = getNodeHeight(p);
 
             while (k >= next(p).getKey()) {
                 p = next(p);
-                operationCost++;
+                nodeVisited++;
             }
         }
         return p;
@@ -211,7 +217,7 @@ class SkipListPQ {
         if (key == Integer.MIN_VALUE || key == Integer.MAX_VALUE)
             return 0;
 
-        operationCost = 0;
+        nodeVisited = 0;
 
         Node tmpNode = null;
         Node prevNode = search(key);
@@ -265,7 +271,7 @@ class SkipListPQ {
 
         listUpdated = true;
 
-        return operationCost;
+        return nodeVisited;
     }
 
     public MyEntry removeMin() {
@@ -311,7 +317,7 @@ class SkipListPQ {
         return e;
     }
 
-    // DA CAMBIARE I SIMBOLI DELL'INFINITO PRIMA DI CONSEGNARLO
+    // Stampa i nodi presenti in livello per livello
     public void printDebug() {
         System.out.print("\n");
 
@@ -323,9 +329,9 @@ class SkipListPQ {
                 if (k != Integer.MIN_VALUE && k != Integer.MAX_VALUE)
                     System.out.print("(" + k + ")\s");
                 else if (k == Integer.MIN_VALUE)
-                    System.out.print("(-∞)\s");
+                    System.out.print("(-INF)\s");
                 else if (k == Integer.MAX_VALUE)
-                    System.out.print("(+∞)\s");
+                    System.out.print("(+INF)\s");
 
                 current = next(current);
             }
@@ -444,11 +450,6 @@ class SkipListPQ {
 
 public class TestProgram {
     public static void main(String[] args) {
-
-        // Imposto manualmente l'argomento SOLO per poter
-        // utilizzare tranquillamente il debugger
-        args = new String[] { "./IO_FILES/input_example_1.txt" };
-
         if (args.length != 1) {
             System.out.println("Usage: java TestProgram <file_path>");
             return;
@@ -488,7 +489,7 @@ public class TestProgram {
                         return;
                 }
             }
-            skipList.printDebug();
+
             System.out.println(alpha + "\s" +
                     skipList.size() + "\s" +
                     (int) (insertDone) + "\s" + (tot / insertDone));
