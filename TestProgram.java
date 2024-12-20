@@ -463,8 +463,8 @@ public class TestProgram {
 
             SkipListPQ skipList = new SkipListPQ(alpha);
 
-            double tot = 0;
-            double insertDone = 0;
+            double totalNodesVisited = 0;
+            double entryInserted = 0;
 
             for (int i = 0; i < N; i++) {
                 String[] line = br.readLine().split(" ");
@@ -478,8 +478,8 @@ public class TestProgram {
                         skipList.removeMin();
                         break;
                     case 2:
-                        tot += skipList.insert(Integer.parseInt(line[1]), line[2]);
-                        insertDone++;
+                        totalNodesVisited += skipList.insert(Integer.parseInt(line[1]), line[2]);
+                        entryInserted++;
                         break;
                     case 3:
                         skipList.print();
@@ -492,7 +492,7 @@ public class TestProgram {
 
             System.out.println(alpha + "\s" +
                     skipList.size() + "\s" +
-                    (int) (insertDone) + "\s" + (tot / insertDone));
+                    (int) (entryInserted) + "\s" + (totalNodesVisited / entryInserted));
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
         }
