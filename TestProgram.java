@@ -291,8 +291,9 @@ class SkipListPQ {
 
         current = head;
         while (below(current) != null) {
-            // Se il penultimo livello è vuoto allora rimuovo tutto l'ultimo livello
-            if (isCurrentNodeLevelEmpty(below(current))) {
+            // Se il penultimo livello è vuoto allora rimuovo tutto l'ultimo livello,
+            // devo però mantenere gli ultimi due livelli, anche se la SkipList è vuota
+            if (isCurrentNodeLevelEmpty(below(current)) && getNodeHeight(current) > 1) {
                 // Abbasso la testa ad un livello inferiore
                 head = below(head);
 
