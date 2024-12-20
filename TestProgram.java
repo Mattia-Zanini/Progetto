@@ -112,8 +112,10 @@ class SkipListPQ {
     private Node head;
     private Node tail;
 
-    private boolean listUpdated = false;
-    private int listSize = 0;
+    private boolean listUpdated;
+    private int listSize;
+
+    private int operationCost;
 
     public SkipListPQ(double _alpha) {
         alpha = _alpha;
@@ -150,6 +152,9 @@ class SkipListPQ {
 
         // La lista è stata creata, di fatto quindi aggiornata
         listUpdated = true;
+
+        listSize = 0;
+        operationCost = 0;
     }
 
     public int size() {
@@ -189,10 +194,13 @@ class SkipListPQ {
 
         while (below(p) != null && height > minHeight) {
             p = below(p);
+            operationCost++;
             height = getNodeHeight(p);
 
-            while (k >= next(p).getKey())
+            while (k >= next(p).getKey()) {
                 p = next(p);
+                operationCost++;
+            }
         }
         return p;
     }
@@ -202,6 +210,8 @@ class SkipListPQ {
         // nodi con chiave -infinito e +infinito
         if (key == Integer.MIN_VALUE || key == Integer.MAX_VALUE)
             return 0;
+
+        operationCost = 0;
 
         Node tmpNode = null;
         Node prevNode = search(key);
@@ -255,7 +265,7 @@ class SkipListPQ {
 
         listUpdated = true;
 
-        return 1;
+        return operationCost;
     }
 
     public MyEntry removeMin() {
@@ -294,6 +304,8 @@ class SkipListPQ {
             } else
                 current = below(current);
         }
+
+        listUpdated = true;
 
         return e;
     }
@@ -434,7 +446,7 @@ public class TestProgram {
 
         // Imposto manualmente l'argomento SOLO per poter
         // utilizzare tranquillamente il debugger
-        args = new String[] { "./IO_FILES/input_example_2.txt" };
+        args = new String[] { "./IO_FILES/input_example_1.txt" };
 
         if (args.length != 1) {
             System.out.println("Usage: java TestProgram <file_path>");
@@ -476,9 +488,9 @@ public class TestProgram {
                 }
             }
             skipList.printDebug();
-            System.out.println(alpha + ", " +
-                    skipList.size() + ", " +
-                    (int) (insertDone) + ", " + (tot / insertDone));
+            System.out.println(alpha + "\s" +
+                    skipList.size() + "\s" +
+                    (int) (insertDone) + "\s" + (tot / insertDone));
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
         }
