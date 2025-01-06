@@ -192,8 +192,8 @@ class SkipListPQ {
     // Cerco il nodo con la chiave k < rispetto alla chiave della entry da inserire
     //
     // Non aggiungo al totale dei nodi visitati, le visite di 'getNodeHeight()'
-    // perchè da consegna devo tener traccia dei nodi visitati, partendo da s (il
-    // nodo head) per inserire la nuova entry in S0
+    // perchè da consegna devo tener traccia dei nodi attraversati, partendo da s
+    // (il nodo head) per inserire la nuova entry in S0
     private Node search(int k, int minHeight) {
         Node p = head;
         int height = getNodeHeight(p);
@@ -342,6 +342,7 @@ class SkipListPQ {
         System.out.print("\n");
     }
 
+    // Stampa tutte le entry con le rispettive chiavi e valori
     public void print() {
         Node current = getTowerBottom(head);
 
@@ -413,6 +414,8 @@ class SkipListPQ {
         return height;
     }
 
+    // ritorna se la lista più in alto è vuota
+    // (ovvero quella dove si trova il nodo puntato da head)
     private boolean isLastListEmpty() {
         return isCurrentNodeLevelEmpty(head);
     }
