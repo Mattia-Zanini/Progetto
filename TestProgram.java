@@ -501,3 +501,55 @@ public class TestProgram {
         }
     }
 }
+// OUTPUT input_example_1.txt:
+/*
+ * 13 -1.0
+ * 4 bike 2, 9 woman 1, 16 car 4, 48 dog 4, 124 car 2
+ * 9 woman
+ * 2 man 1, 9 woman 1, 10 bike 1, 16 car 4, 48 dog 4, 124 car 2
+ * -1.0 6 8 6.5
+ */
+
+// OUTPUT input_example_2.txt:
+/*
+ * 13 0.25
+ * 4 bike 1, 9 woman 1, 16 car 1, 48 dog 1, 124 car 1
+ * 9 woman
+ * 2 man 1, 9 woman 1, 10 bike 1, 16 car 1, 48 dog 1, 124 car 1
+ * 0.25 6 8 2.125
+ */
+
+// OUTPUT alphaEfficiencyTest_10K_1.txt:
+/*
+ * 10200 0.0
+ * 0.0 9800 10000 2393.4036
+ */
+
+// OUTPUT alphaEfficiencyTest_10K_2.txt:
+/*
+ * 10200 0.25
+ * 0.25 9800 10000 31.2899
+ */
+// OUTPUT alphaEfficiencyTest_10K_3.txt:
+/*
+ * 10200 0.5
+ * 0.5 9800 10000 39.6811
+ */
+
+// OUTPUT alphaEfficiencyTest_100K_1.txt:
+/*
+ * 102000 0.0
+ * 0.0 98000 100000 24075.94689
+ */
+
+// OUTPUT alphaEfficiencyTest_100K_2.txt:
+/*
+ * 102000 0.25
+ * 0.25 98000 100000 37.6758
+ */
+
+// OUTPUT alphaEfficiencyTest_100K_3.txt:
+/*
+ * 102000 0.5
+ * 0.5 98000 100000 40.28456
+ */
