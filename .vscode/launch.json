@@ -9,16 +9,16 @@
       "name": "Current File",
       "request": "launch",
       "mainClass": "${file}",
-      "args": [
-        "./IO_FILES/input_example_1.txt"
-      ]
     },
     {
       "type": "java",
       "name": "TestProgram",
       "request": "launch",
       "mainClass": "TestProgram",
-      "projectName": "Progetto_90001372"
+      "projectName": "Progetto_90001372",
+      "args": [
+        "./IO_FILES/input_example_1.txt"
+      ]
     }
   ]
 }
